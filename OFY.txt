@@ -1,0 +1,42 @@
+Subject: Converting CSV file to DSV file using column and cat command
+
+First take a sample csv (Ex: ESS.csv)
+
+ESS.csv is comma separated file with left and right enclosure is """
+and field separator is ","
+
+To convert the ESS.csv file to delimited file(i.e dsv) using column command
+use below command
+
+cat ESS.csv | column -t -s '"' -o '' | column -t -s ',' -o ';' > ESS.dsv
+
+Command Explanation:
+
+Above command changes left and right enclosure from " to none and
+field separator is ";"
+
+
+You can customize left enclosure as per your requirements
+
+Example 2:
+
+Change left and right enclosure from """ to "'" and field separator is ";"
+
+cat ESS.csv | column -t -s '"' -o ''' | column -t -s ',' -o ';' > ESS.dsv
+
+
+Example 3:
+
+Change left and right enclosure from "'"" to ":" and field separator is ";"
+
+cat ES.csv | column -t -s \'\'\' -o ':' | column -t -s ',' -o ';' > ES.dsv
+
+
+
+Example files are available in github : https://github.com/hemanth22/CSVToCustomDSV
+
+Github Wiki Guide link: https://github.com/hemanth22/CSVToCustomDSV/wiki/Guide-to-use-CSVToCustomDSV
+
+How to download example use below command
+
+git clone https://github.com/hemanth22/CSVToCustomDSV.git
