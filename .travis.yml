@@ -1,5 +1,5 @@
 language: bash
 before_install:
-    - apt-get install column
+    - sudo apt-get install column
 script:
   - ./csv2dsv.sh
