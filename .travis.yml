@@ -1,6 +1,7 @@
+services: docker
 language: bash
-sudo: required
-before_install:
-    - sudo apt-get install bsdmainutils
+
+env:
+  -distro: centos7
 script:
   - ./csv2dsv.sh
