@@ -1,5 +1,5 @@
 language: bash
 before_install:
-    - sudo apt-get install column
+    - sudo apt-get install bsdmainutils
 script:
   - ./csv2dsv.sh
