@@ -4,4 +4,7 @@ language: bash
 env:
   - distro: centos7
 script:
-  - ./csv2dsv.sh
+    # Configure test script so we can run extra tests after playbook is run.
+  - export container_id=$(date +%s)
+  - export cleanup=false
+  - sudo docker exec --tty ${container_id} ./csv2dsv.sh
