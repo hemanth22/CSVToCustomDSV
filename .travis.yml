@@ -2,6 +2,6 @@ services: docker
 language: bash
 
 env:
-  -distro: centos7
+  - distro: centos7
 script:
   - ./csv2dsv.sh
