@@ -5,6 +5,9 @@ before_script:
 docker pull centos:7
 
 script:
-docker run centos:7 /bin/sh -c "./csv2dsv.sh"
-docker ps -a
-  
+docker run -it --name temp centos /bin/bash
+yum install git
+git clone https://github.com/hemanth22/CSVToCustomDSV.git
+cd CSVToCustomDSV
+./csv2dsv.sh
+exit
