@@ -1,5 +1,6 @@
 #Required sudo for docker
 sudo: required
+language: bash
 
 env:
   - distro: centos7
