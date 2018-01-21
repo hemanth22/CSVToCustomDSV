@@ -1,12 +1,21 @@
-services: docker
-language: bash
+#Required sudo for docker
+sudo: required
 
-before_script:
-docker pull centos
-docker run -it --name temp centos /bin/bash
-yum install epel-release
-yum install git
+env:
+  - distro: centos7
+ 
+services:
+  - docker
+
+before_install:
+#pull the image from Docker Hub for the OS under test
+  - docker pull centos:7
 
 script:
-./csv2dsv.sh
-exit
+#create a random file to store the container
+  - container_id=bitroid
+  - set -e
+# Run container detached
+  - docker run --detach --name ${container_id} centos:7
+  - docker exec --tty ${container_id}) env TERM=xterm bash -c "./csv2dsv.sh"
+  - docker stop 
