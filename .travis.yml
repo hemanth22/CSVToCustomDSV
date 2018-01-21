@@ -16,6 +16,8 @@ script:
   - container_id=bitroid
 
 # Run container detached
-  - docker run --detach --name ${container_id} centos:7
-  - docker exec --tty ${container_id} env TERM=xterm bash -c "./csv2dsv.sh"
-  - docker stop 
+  - docker run -it --name ${container_id} centos /bin/bash
+  - yum install git
+  - git clone https://github.com/hemanth22/CSVToCustomDSV.git
+  - ./csv2dsv.sh
+  - exit
