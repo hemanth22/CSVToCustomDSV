@@ -17,5 +17,5 @@ script:
 
 # Run container detached
   - docker run --detach --name ${container_id} centos:7
-  - docker exec --tty ${container_id}) env TERM=xterm bash -c "./csv2dsv.sh"
+  - docker exec --tty ${container_id} env TERM=xterm bash -c "./csv2dsv.sh"
   - docker stop 
