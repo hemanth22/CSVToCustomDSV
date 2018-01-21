@@ -3,7 +3,7 @@ language: bash
 
 before_script:
 docker pull centos
-ocker run -it --name temp centos /bin/bash
+docker run -it --name temp centos /bin/bash
 yum install epel-release
 yum install git
 
