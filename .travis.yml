@@ -18,5 +18,5 @@ script:
   - export cleanup=false
 
 # Run container detached
-  - docker run -it --name ${container_id} centos /bin/bash -c "yum -y install epel-release;yum -y install git;git clone https://github.com/hemanth22/CSVToCustomDSV.git;cd CSVToCustomDSV;./csv2dsv.sh
+  - docker run -it --name ${container_id} centos /bin/bash -c "yum -y install epel-release;yum -y install git;git clone https://github.com/hemanth22/CSVToCustomDSV.git;cd CSVToCustomDSV;./csv2dsv.sh"
   - exit
