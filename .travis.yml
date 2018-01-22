@@ -3,7 +3,7 @@ sudo: required
 language: bash
 
 env:
-  - distro: centos7
+  - container_id=${container_id:-$timestamp}
  
 services:
   - docker
@@ -14,7 +14,8 @@ before_install:
 
 script:
 #create a random file to store the container
-  - container_id=bitroid
+  - export container_id=$(date +%s)
+  - export cleanup=false
 
 # Run container detached
   - docker run -it --name ${container_id} centos /bin/bash -c "yum -y install epel-release;yum -y install git;git clone https://github.com/hemanth22/CSVToCustomDSV.git;cd CSVToCustomDSV;./csv2dsv.sh
