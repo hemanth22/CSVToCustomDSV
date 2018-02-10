@@ -1,26 +1,29 @@
-#Required sudo for docker
 sudo: required
 language: bash
 
-env:
-  - container_id=${container_id:-$timestamp}
- 
-services:
-  - docker
-
-before_install:
-#pull the image from Docker Hub for the OS under test
-  - docker pull centos:7
+install:
+  - sudo apt-get install -y vagrant
+  - sudo apt-get -y install gcc make linux-headers-$(uname -r) dkms
+  - wget -q https://www.virtualbox.org/download/oracle_vbox_2016.asc -O- | sudo apt-key add -
+  - wget -q https://www.virtualbox.org/download/oracle_vbox.asc -O- | sudo apt-key add -
+  - sudo sh -c 'echo "deb http://download.virtualbox.org/virtualbox/debian $(lsb_release -sc) contrib" >> /etc/apt/sources.list'
+  - sudo apt-get update
+  - sudo apt-get install virtualbox-4.3
+  - VBoxManage -v
 
 script:
-#create a random file to store the container
-  - export container_id=$(date +%s)
-  - export cleanup=false
+  - ifconfig -a | grep inet
+  - ifconfig -a
+  - VBoxManage list bridgedifs
+  - vagrant box add solaris http://www.benden.us/vagrant/solaris-11.2.box
+  - sudo vagrant up
+  - sudo vagrant ssh -c 'wget -O- localhost'
 
-# Run container detached
-  - docker run -it --name ${container_id} centos:7 /bin/bash -c "yum -y install epel-release;yum -y install git;git clone https://github.com/hemanth22/CSVToCustomDSV.git;cd CSVToCustomDSV;./csv2dsv.sh"
+after_script:
+  - vagrant destroy -f
 
 notifications:
- slack:
+  email: false
+  slack:
    rooms:
      - nothingorganization:GN1JzklSpbMyfZVWcS05U6a0#general
