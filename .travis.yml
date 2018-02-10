@@ -1,5 +1,8 @@
 sudo: required
 language: bash
+branches:
+  only:
+  - solaris
 
 install:
   - sudo apt-get install -y vagrant
