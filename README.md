@@ -3,6 +3,8 @@ Examples and guide for CSV to Custom DSV format using column and cat command
 
 Guide wiki Link: https://github.com/hemanth22/CSVToCustomDSV/wiki/Guide-to-use-CSVToCustomDSV
 
+Guide for solaris: https://github.com/hemanth22/CSVToCustomDSV/wiki/Guide-to-use-CSVToCustomDSV-in-solaris
+
 
 #Travis CI Live Build status
 
