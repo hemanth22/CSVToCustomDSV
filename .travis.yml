@@ -8,8 +8,7 @@ branches:
 before_install:
 # Installing required packages
   - sudo apt-get update
-  - sudo apt-cache search column | awk '{ print $1 }' > Package.txt
-  - sudo apt-get -y install $(cat Package.txt)
+  - sudo apt-get -y install libccolamd2.8.0 libcolamd2.8.0 geany-plugin-shiftcolumn libclass-dbi-asform-perl libclass-dbi-plugin-type-perl libdbix-class-datetime-epoch-perl libdbix-class-encodedcolumn-perl libdbix-class-inflatecolumn-fs-perl libdbix-class-inflatecolumn-ip-perl libdbix-class-inflatecolumn-serializer-perl libdbix-class-uuidcolumns-perl ruby-columnize xplot
 
 script:
 # Initialize testing
