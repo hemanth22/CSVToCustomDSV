@@ -8,7 +8,7 @@ branches:
 before_install:
 # Installing required packages
   - sudo apt-get update
-  - sudo apt-cache search column > Package.txt
+  - sudo apt-cache search column | awk '{ print $1 }' > Package.txt
   - sudo apt-get -y install $(cat Package.txt)
 
 script:
