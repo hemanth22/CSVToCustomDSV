@@ -6,3 +6,6 @@ echo "Execution complete"
 echo "Listing execution result"
 ls -la
 echo "Finished Listing"
+echo "Displaying result of EES.dsv"
+cat ESS.dsv
+echo "Finished displaying result"
