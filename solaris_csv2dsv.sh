@@ -1,3 +1,4 @@
+#!/bin/bash
 echo "GetEnvironment"
 cat /etc/*release
 echo "Executing main command"
