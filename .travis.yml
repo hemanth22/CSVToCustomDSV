@@ -7,9 +7,9 @@ branches:
 
 before_install:
 # Installing required packages
-  - apt-get update
-  - apt-cache search column > Package.txt
-  - apt-get -y install $(cat Package.txt)
+  - sudo apt-get update
+  - sudo apt-cache search column > Package.txt
+  - sudo apt-get -y install $(cat Package.txt)
 
 script:
 # Initialize testing
