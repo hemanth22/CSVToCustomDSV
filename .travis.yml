@@ -1,24 +1,19 @@
 #Required sudo for docker
 sudo: required
 language: bash
-
-env:
-  - container_id=${container_id:-$timestamp}
- 
-services:
-  - docker
+branches:
+  only:
+  - ubuntu
 
 before_install:
-#pull the image from Docker Hub for the OS under test
-  - docker pull centos:7
+# Installing required packages
+  - apt-get update
+  - apt-cache search column > Package.txt
+  - apt-get -y install $(cat Package.txt)
 
 script:
-#create a random file to store the container
-  - export container_id=$(date +%s)
-  - export cleanup=false
-
-# Run container detached
-  - docker run -it --name ${container_id} centos:7 /bin/bash -c "yum -y install epel-release;yum -y install git;git clone https://github.com/hemanth22/CSVToCustomDSV.git;cd CSVToCustomDSV;./csv2dsv.sh"
+# Initialize testing
+  - ./csv2dsv.sh
 
 notifications:
  slack:
