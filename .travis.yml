@@ -23,4 +23,4 @@ script:
 notifications:
  slack:
    rooms:
-     - nothingorganization:GN1JzklSpbMyfZVWcS05U6a0#general
+     - nothingorganization:GN1JzklSpbMyfZVWcS05U6a0#mygitrepos
