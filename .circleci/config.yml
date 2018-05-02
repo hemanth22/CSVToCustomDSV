@@ -9,7 +9,8 @@ jobs:
          - run: cat /etc/*release
          - run: echo "Installing dependencies."
          - run: yum install -y epel-release
-         - run: yum install -y git util-linux-2.23.2-43.el7_4.2.x86_64
+         - run: yum install -y git
+         - run: yum install -y util-linux-2.23.2-43.el7_4.2.x86_64
          - run: echo "Running Tests."
-         - run: ./csv2dsv.sh"
+         - run: cat ESS.csv | column -t -s '"' -o '' | column -t -s ',' -o ';' > ESS.dsv
          - run: echo "Test Completed."
