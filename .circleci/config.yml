@@ -7,3 +7,4 @@ jobs:
          - checkout
          - run: echo "hello world"
          - run: cat /etc/*release
+         - run: ./Circlescript.sh
