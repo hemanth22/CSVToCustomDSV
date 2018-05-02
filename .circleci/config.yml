@@ -7,4 +7,9 @@ jobs:
          - checkout
          - run: echo "hello world"
          - run: cat /etc/*release
-         - run: ./Circlescript.sh
+         - run: echo "Installing dependencies."
+         - run: yum install -y epel-release
+         - run: yum install -y git util-linux-2.23.2-43.el7_4.2.x86_64
+         - run: echo "Running Tests."
+         - run: ./csv2dsv.sh"
+         - run: echo "Test Completed."
