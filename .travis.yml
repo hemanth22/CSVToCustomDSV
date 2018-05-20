@@ -25,10 +25,17 @@ script:
 #- docker run -d --name ${container_id} centos:7 /bin/bash -c "yum -y install epel-release;yum -y install git;git clone https://github.com/hemanth22/CSVToCustomDSV.git;cd CSVToCustomDSV;./csv2dsv.sh"
   - docker exec -it $(docker ps -aq) sh -c "yum install -y epel-release"
   - docker exec -it $(docker ps -aq) sh -c "yum update -y"
-  - docker exec -it $(docker ps -aq) sh -c "yum install -y kernel-*"
+  - docker exec -it $(docker ps -aq) sh -c "yum install -y kernel-* dkms"
   - docker exec -it $(docker ps -aq) sh -c "yum install -y wget curl-*"
   - docker exec -it $(docker ps -aq) sh -c "yum install -y fpaste"
-  - docker exec -it $(docker ps -aq) sh -c " history | fpaste"
+  - docker exec -it $(docker ps -aq) sh -c "yum install -y vagrant"
+  - docker exec -it $(docker ps -aq) sh -c "wget -q https://www.virtualbox.org/download/oracle_vbox.asc -O- | rpm --import -"
+  - docker exec -it $(docker ps -aq) sh -c "cd /etc/yum.repo.d/;wget https://download.virtualbox.org/virtualbox/rpm/el/virtualbox.repo"
+  - docker exec -it $(docker ps -aq) sh -c "yum install -y VirtualBox-5.2"
+  - docker exec -it $(docker ps -aq) sh -c "vagrant box add solaris http://www.benden.us/vagrant/solaris-11.2.box"
+  - docker exec -it $(docker ps -aq) sh -c "vagrant up"
+  #- docker exec -it $(docker ps -aq) sh -c "
+ # - docker exec -it $(docker ps -aq) sh -c " history | fpaste"
   - docker stop $(docker ps -aq)
   - docker container ls
   - docker start $(docker ps -aq)
