@@ -24,7 +24,7 @@ script:
   - docker run -d --privileged --name ${container_id}  centos/systemd /usr/sbin/init
 #- docker run -d --name ${container_id} centos:7 /bin/bash -c "yum -y install epel-release;yum -y install git;git clone https://github.com/hemanth22/CSVToCustomDSV.git;cd CSVToCustomDSV;./csv2dsv.sh"
   - docker exec -it $(docker ps -aq) sh -c "yum install -y epel-release"
-  - docker exec -it $(docker ps -aq) sh -c "yum update"
+  - docker exec -it $(docker ps -aq) sh -c "yum update -y"
   - docker exec -it $(docker ps -aq) sh -c "yum install -y kernel-*"
   - docker exec -it $(docker ps -aq) sh -c "yum install -y wget curl-*"
   - docker exec -it $(docker ps -aq) sh -c "yum install -y fpaste"
