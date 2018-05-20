@@ -1,0 +1,36 @@
+#Required sudo for docker
+sudo: required
+language: bash
+branches:
+  only:
+  - solaris
+
+env:
+  - container_id=${container_id:-$timestamp}
+ 
+services:
+  - docker
+
+before_install:
+#pull the image from Docker Hub for the OS under test
+  - docker pull centos/systemd:latest
+
+script:
+#create a random file to store the container
+  - export container_id=$(date +%s)
+  - export cleanup=false
+
+# Run container detached
+  - docker run -d --privileged --name ${container_id}  centos/systemd /usr/sbin/init
+#- docker run -d --name ${container_id} centos:7 /bin/bash -c "yum -y install epel-release;yum -y install git;git clone https://github.com/hemanth22/CSVToCustomDSV.git;cd CSVToCustomDSV;./csv2dsv.sh"
+  - docker stop $(docker ps -aq)
+  - docker container ls
+  - docker start $(docker ps -aq)
+  - docker container ls
+  - docker stop $(docker ps -aq)
+  - docker rm $(docker ps -aq)
+  - docker rmi $(docker images -aq)
+notifications:
+ slack:
+   rooms:
+     - nothingorganization:GN1JzklSpbMyfZVWcS05U6a0#mygitrepos
