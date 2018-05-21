@@ -32,18 +32,20 @@ script:
   - docker exec -it $(docker ps -aq) sh -c "wget https://releases.hashicorp.com/vagrant/2.1.1/vagrant_2.1.1_x86_64.rpm"
   - docker exec -it $(docker ps -aq) sh -c "rpm -iUvh vagrant_2.1.1_x86_64.rpm"
   #- docker exec -it $(docker ps -aq) sh -c "yum install -y vagrant"
-  - docker exec -it $(docker ps -aq) sh -c "wget -q https://www.virtualbox.org/download/oracle_vbox.asc -O- | rpm --import -"
+  - docker exec -it $(docker ps -aq) sh -c "wget http://download.virtualbox.org/virtualbox/debian/oracle_vbox.asc"
+  - docker exec -it $(docker ps -aq) sh -c "rpm --import oracle_vbox.asc"
   - docker exec -it $(docker ps -aq) sh -c "cd /etc/yum.repo.d/;wget https://download.virtualbox.org/virtualbox/rpm/el/virtualbox.repo"
-  - docker exec -it $(docker ps -aq) sh -c "yum install -y virtualbox-5.2"
+  - docker exec -it $(docker ps -aq) sh -c "yum install -y VirtualBox-5.2"
+  - docker stop $(docker ps -aq)
+  - docker container ls
+  - docker start $(docker ps -aq)
+  - docker container ls
   - docker exec -it $(docker ps -aq) sh -c "vagrant box add solaris http://www.benden.us/vagrant/solaris-11.2.box"
   - docker exec -it $(docker ps -aq) sh -c "vagrant init solaris"
   - docker exec -it $(docker ps -aq) sh -c "vagrant up"
   #- docker exec -it $(docker ps -aq) sh -c "
  # - docker exec -it $(docker ps -aq) sh -c " history | fpaste"
-  - docker stop $(docker ps -aq)
-  - docker container ls
-  - docker start $(docker ps -aq)
-  - docker container ls
+
   - docker stop $(docker ps -aq)
   - docker rm $(docker ps -aq)
   - docker rmi $(docker images -aq)
