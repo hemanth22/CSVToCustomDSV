@@ -42,16 +42,16 @@ script:
   - docker container ls
   - docker start $(docker ps -aq)
   - docker container ls
-  - docker exec -it $(docker ps -aq) sh -c "vagrant box add solaris http://www.benden.us/vagrant/solaris-11.2.box"
-  - docker exec -it $(docker ps -aq) sh -c "vagrant init solaris"
-  - docker exec -it $(docker ps -aq) sh -c "vagrant up"
-  - docker exec -it $(docker ps -aq) sh -c "vagrant ssh -c cat /etc/*release"
-  - docker exec -it $(docker ps -aq) sh -c "vagrant ssh -c ls -la /etc/*release"
-  - docker exec -it $(docker ps -aq) sh -c "vagrant ssh -c pkg install -y bash text-utilities"
-  - docker exec -it $(docker ps -aq) sh -c "vagrant ssh -c pkg install -y git"
-  - docker exec -it $(docker ps -aq) sh -c "vagrant ssh -c $git --branch=solaris clone https://github.com/hemanth22/CSVToCustomDSV.git"
-  - docker exec -it $(docker ps -aq) sh -c "vagrant ssh -c ./solaris_csv2dsv.sh"
-  - docker exec -it $(docker ps -aq) sh -c "vagrant ssh -c ls -la"
+  #- docker exec -it $(docker ps -aq) sh -c "vagrant box add solaris http://www.benden.us/vagrant/solaris-11.2.box"
+  #- docker exec -it $(docker ps -aq) sh -c "vagrant init solaris"
+  #- docker exec -it $(docker ps -aq) sh -c "vagrant up"
+  #- docker exec -it $(docker ps -aq) sh -c "vagrant ssh -c cat /etc/*release"
+  #- docker exec -it $(docker ps -aq) sh -c "vagrant ssh -c ls -la /etc/*release"
+  #- docker exec -it $(docker ps -aq) sh -c "vagrant ssh -c pkg install -y bash text-utilities"
+  #- docker exec -it $(docker ps -aq) sh -c "vagrant ssh -c pkg install -y git"
+  #- docker exec -it $(docker ps -aq) sh -c "vagrant ssh -c $git --branch=solaris clone https://github.com/hemanth22/CSVToCustomDSV.git"
+  #- docker exec -it $(docker ps -aq) sh -c "vagrant ssh -c ./solaris_csv2dsv.sh"
+  #- docker exec -it $(docker ps -aq) sh -c "vagrant ssh -c ls -la"
   #- docker exec -it $(docker ps -aq) sh -c "
  # - docker exec -it $(docker ps -aq) sh -c " history | fpaste"
 
