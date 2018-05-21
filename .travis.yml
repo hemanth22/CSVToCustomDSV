@@ -34,7 +34,7 @@ script:
   #- docker exec -it $(docker ps -aq) sh -c "yum install -y vagrant"
   - docker exec -it $(docker ps -aq) sh -c "wget http://download.virtualbox.org/virtualbox/debian/oracle_vbox.asc"
   - docker exec -it $(docker ps -aq) sh -c "rpm --import oracle_vbox.asc"
-  - docker exec -it $(docker ps -aq) sh -c "cd /etc/yum.repo.d/;wget https://download.virtualbox.org/virtualbox/rpm/el/virtualbox.repo"
+  - docker exec -it $(docker ps -aq) sh -c "cd /etc/yum.repo.d/;wget https://download.virtualbox.org/virtualbox/rpm/el/virtualbox.repo;ls -la"
   - docker exec -it $(docker ps -aq) sh -c "yum install -y VirtualBox-5.2"
   - docker stop $(docker ps -aq)
   - docker container ls
