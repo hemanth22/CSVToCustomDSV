@@ -23,25 +23,26 @@ script:
 # Run container detached
   - docker run -d --privileged --name ${container_id}  centos/systemd /usr/sbin/init
 #- docker run -d --name ${container_id} centos:7 /bin/bash -c "yum -y install epel-release;yum -y install git;git clone https://github.com/hemanth22/CSVToCustomDSV.git;cd CSVToCustomDSV;./csv2dsv.sh"
-  - docker exec -it $(docker ps -aq) sh -c "yum install -y epel-release"
-  - docker exec -it $(docker ps -aq) sh -c "yum update -y"
-  - docker exec -it $(docker ps -aq) sh -c "yum install -y kernel-* dkms gcc-* kernel-header kernel-devel perl-*"
-  - docker exec -it $(docker ps -aq) sh -c "yum install -y sudo-*"
-  - docker exec -it $(docker ps -aq) sh -c "yum install -y wget curl-*"
-  - docker exec -it $(docker ps -aq) sh -c "yum install -y fpaste"
-  - docker exec -it $(docker ps -aq) sh -c "wget https://releases.hashicorp.com/vagrant/2.1.1/vagrant_2.1.1_x86_64.rpm"
-  - docker exec -it $(docker ps -aq) sh -c "rpm -iUvh vagrant_2.1.1_x86_64.rpm"
+  - docker exec -it $(docker ps -aq) sh -c "yum install -y epel-release 2>&1>> packages.log"
+  - docker exec -it $(docker ps -aq) sh -c "yum update -y 2>&1>> packages.log"
+  - docker exec -it $(docker ps -aq) sh -c "yum install -y kernel-* dkms gcc-* kernel-headers kernel-devel perl-* 2>&1>> packages.log"
+  - docker exec -it $(docker ps -aq) sh -c "yum install -y sudo-* 2>&1>> packages.log"
+  - docker exec -it $(docker ps -aq) sh -c "yum install -y wget curl-* 2>&1>> packages.log"
+  - docker exec -it $(docker ps -aq) sh -c "yum install -y fpaste 2>&1>> packages.log"
+  - docker exec -it $(docker ps -aq) sh -c "wget https://releases.hashicorp.com/vagrant/2.1.1/vagrant_2.1.1_x86_64.rpm 2>&1>> packages.log"
+  - docker exec -it $(docker ps -aq) sh -c "rpm -iUvh vagrant_2.1.1_x86_64.rpm 2>&1>> packages.log"
   #- docker exec -it $(docker ps -aq) sh -c "yum install -y vagrant"
-  - docker exec -it $(docker ps -aq) sh -c "wget http://download.virtualbox.org/virtualbox/debian/oracle_vbox.asc"
-  - docker exec -it $(docker ps -aq) sh -c "rpm --import oracle_vbox.asc"
-  - docker exec -it $(docker ps -aq) sh -c "wget http://download.virtualbox.org/virtualbox/rpm/el/virtualbox.repo -O /etc/yum.repos.d/virtualbox.repo"
-  - docker exec -it $(docker ps -aq) sh -c "yum install -y VirtualBox-5.2"
+  - docker exec -it $(docker ps -aq) sh -c "wget http://download.virtualbox.org/virtualbox/debian/oracle_vbox.asc 2>&1>> packages.log"
+  - docker exec -it $(docker ps -aq) sh -c "rpm --import oracle_vbox.asc 2>&1>> packages.log"
+  - docker exec -it $(docker ps -aq) sh -c "wget http://download.virtualbox.org/virtualbox/rpm/el/virtualbox.repo -O /etc/yum.repos.d/virtualbox.repo 2>&1>> packages.log"
+  - docker exec -it $(docker ps -aq) sh -c "yum install -y VirtualBox-5.2 2>&1>> packages.log"
   - docker exec -it $(docker ps -aq) sh -c "/sbin/vboxconfig"
   - docker exec -it $(docker ps -aq) sh -c "VBoxManage --version"
   - docker stop $(docker ps -aq)
   - docker container ls
   - docker start $(docker ps -aq)
   - docker container ls
+  - docker exec -it $(docker ps -aq) sh -c "VBoxManage --version"
   #- docker exec -it $(docker ps -aq) sh -c "vagrant box add solaris http://www.benden.us/vagrant/solaris-11.2.box"
   #- docker exec -it $(docker ps -aq) sh -c "vagrant init solaris"
   #- docker exec -it $(docker ps -aq) sh -c "vagrant up"
