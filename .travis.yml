@@ -25,8 +25,8 @@ script:
  #- docker run -d --name ${container_id} centos:7 /bin/bash -c "yum -y install epel-release;yum -y install git;git clone https://github.com/hemanth22/CSVToCustomDSV.git;cd CSVToCustomDSV;./csv2dsv.sh"
   - docker exec -it $(docker ps -aq) sh -c "yum update -y 2>&1>> packages.log"
   - docker exec -it $(docker ps -aq) sh -c "yum install -y epel-release 2>&1>> packages.log"
-  - docker exec -it $(docker ps -aq) sh -c "echo "group_package_types=default, mandatory, optional" >> /etc/yum.conf"
-  - docker exec -it $(docker ps -aq) sh -c "cat /etc/yum.conf"
+  - docker exec -it --user root $(docker ps -aq) sh -c "echo "group_package_types=default, mandatory, optional" >> /etc/yum.conf"
+  - docker exec -it --user root $(docker ps -aq) sh -c "cat /etc/yum.conf"
   - docker exec -it $(docker ps -aq) sh -c "yum groupinstall -y "GNOME Desktop" "Graphical Administration Tools""
  #- docker exec -it $(docker ps -aq) sh -c "yum groupinstall -y "Server with GUI""
   - docker exec -it $(docker ps -aq) sh -c "ln -sf /lib/systemd/system/runlevel5.target /etc/systemd/system/default.target"
@@ -46,7 +46,7 @@ script:
   - docker exec -it $(docker ps -aq) sh -c "rpm --import oracle_vbox.asc 2>&1>> packages.log"
   - docker exec -it $(docker ps -aq) sh -c "wget http://download.virtualbox.org/virtualbox/rpm/rhel/virtualbox.repo -O /etc/yum.repos.d/virtualbox.repo 2>&1>> packages.log"
   - docker exec -it $(docker ps -aq) sh -c "yum install -y VirtualBox-5.2 2>&1>> packages.log"
-  - docker exec -it $(docker ps -aq) sh -c "/sbin/vboxconfig"
+  - docker exec -it --user root $(docker ps -aq) sh -c "/sbin/vboxconfig"
   - docker exec -it $(docker ps -aq) sh -c "VBoxManage --version"
   - docker stop $(docker ps -aq)
   - docker container ls
