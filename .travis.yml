@@ -25,6 +25,9 @@ script:
  #- docker run -d --name ${container_id} centos:7 /bin/bash -c "yum -y install epel-release;yum -y install git;git clone https://github.com/hemanth22/CSVToCustomDSV.git;cd CSVToCustomDSV;./csv2dsv.sh"
   - docker exec -it $(docker ps -aq) sh -c "yum update -y 2>&1>> packages.log"
   - docker exec -it $(docker ps -aq) sh -c "yum install -y epel-release 2>&1>> packages.log"
+  - docker exec -it $(docker ps -aq) sh -c "yum groupinstall -y "GNOME Desktop" "Graphical Administration Tools""
+  - docker exec -it $(docker ps -aq) sh -c "yum groupinstall -y "Server with GUI""
+  - docker exec -it $(docker ps -aq) sh -c "ln -sf /lib/systemd/system/runlevel5.target /etc/systemd/system/default.target"
   - docker exec -it $(docker ps -aq) sh -c "yum install -y gcc make patch  dkms qt libgomp"
   - docker exec -it $(docker ps -aq) sh -c "yum install -y kernel-headers kernel-devel fontforge binutils glibc-headers glibc-devel"
  #- docker exec -it $(docker ps -aq) sh -c "yum groupinstall -y "Development tools" 2>&1>> packages.log"
@@ -41,16 +44,16 @@ script:
   - docker exec -it $(docker ps -aq) sh -c "rpm --import oracle_vbox.asc 2>&1>> packages.log"
   - docker exec -it $(docker ps -aq) sh -c "wget http://download.virtualbox.org/virtualbox/rpm/rhel/virtualbox.repo -O /etc/yum.repos.d/virtualbox.repo 2>&1>> packages.log"
   - docker exec -it $(docker ps -aq) sh -c "yum install -y VirtualBox-5.2 2>&1>> packages.log"
- #- docker exec -it $(docker ps -aq) sh -c "/sbin/vboxconfig"
+  - docker exec -it $(docker ps -aq) sh -c "/sbin/vboxconfig"
   - docker exec -it $(docker ps -aq) sh -c "VBoxManage --version"
   - docker stop $(docker ps -aq)
   - docker container ls
   - docker start $(docker ps -aq)
   - docker container ls
   - docker exec -it $(docker ps -aq) sh -c "VBoxManage --version"
-  - docker exec -it $(docker ps -aq) sh -c "vagrant box add solaris http://www.benden.us/vagrant/solaris-11.2.box 2>&1>> packages.log"
-  - docker exec -it $(docker ps -aq) sh -c "vagrant init solaris 2>&1>> packages.log"
-  - docker exec -it $(docker ps -aq) sh -c "vagrant up"
+ #- docker exec -it $(docker ps -aq) sh -c "vagrant box add solaris http://www.benden.us/vagrant/solaris-11.2.box 2>&1>> packages.log"
+ #- docker exec -it $(docker ps -aq) sh -c "vagrant init solaris 2>&1>> packages.log"
+ #- docker exec -it $(docker ps -aq) sh -c "vagrant up"
  #- docker exec -it $(docker ps -aq) sh -c "vagrant ssh -c cat /etc/*release"
  #- docker exec -it $(docker ps -aq) sh -c "vagrant ssh -c ls -la /etc/*release"
  #- docker exec -it $(docker ps -aq) sh -c "vagrant ssh -c pkg install -y bash text-utilities"
