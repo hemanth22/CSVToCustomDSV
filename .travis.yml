@@ -33,6 +33,7 @@ script:
   - docker exec -it $(docker ps -aq) sh -c "yum install -y sudo-* 2>&1>> packages.log"
   - docker exec -it $(docker ps -aq) sh -c "yum install -y wget curl-* 2>&1>> packages.log"
   - docker exec -it $(docker ps -aq) sh -c "yum install -y fpaste 2>&1>> packages.log"
+  - docker exec -it $(docker ps -aq) sh -c "yum group list 2>&1>> packages.log"
   - docker exec -it $(docker ps -aq) sh -c "wget https://releases.hashicorp.com/vagrant/2.1.1/vagrant_2.1.1_x86_64.rpm 2>&1>> packages.log"
   - docker exec -it $(docker ps -aq) sh -c "rpm -iUvh vagrant_2.1.1_x86_64.rpm 2>&1>> packages.log"
  #- docker exec -it $(docker ps -aq) sh -c "yum install -y vagrant"
