@@ -48,12 +48,12 @@ script:
   - docker exec -it $(docker ps -aq) sh -c "yum install -y VirtualBox-5.2 2>&1>> packages.log"
   - docker exec -it --user root $(docker ps -aq) sh -c "/sbin/vboxconfig"
   - docker exec -it --user root $(docker ps -aq) sh -c "yum install kernel kernel-devel kernel-headers dkms 2>&1>> packages.log"
-  - docker exec -it --user root $(docker ps -aq) sh -c "/sbin/vboxconfig"
   - docker exec -it $(docker ps -aq) sh -c "VBoxManage --version"
   - docker stop $(docker ps -aq)
   - docker container ls
   - docker start $(docker ps -aq)
   - docker container ls
+  - docker exec -it --user root $(docker ps -aq) sh -c "/sbin/vboxconfig"
   - docker exec -it $(docker ps -aq) sh -c "VBoxManage --version"
  #- docker exec -it $(docker ps -aq) sh -c "vagrant box add solaris http://www.benden.us/vagrant/solaris-11.2.box 2>&1>> packages.log"
  #- docker exec -it $(docker ps -aq) sh -c "vagrant init solaris 2>&1>> packages.log"
