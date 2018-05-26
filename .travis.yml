@@ -23,9 +23,9 @@ script:
 # Run container detached
   - docker run -d --privileged --name ${container_id}  centos/systemd /usr/sbin/init
  #- docker run -d --name ${container_id} centos:7 /bin/bash -c "yum -y install epel-release;yum -y install git;git clone https://github.com/hemanth22/CSVToCustomDSV.git;cd CSVToCustomDSV;./csv2dsv.sh"
-  - docker exec -it $(docker ps -aq) sh -c "yum install -y epel-release 2>&1>> packages.log"
   - docker exec -it $(docker ps -aq) sh -c "yum update -y 2>&1>> packages.log"
-  - docker exec -it $(docker ps -aq) sh -c "yum groupinstall -y "Development tools" 2>&1>> packages.log"
+  - docker exec -it $(docker ps -aq) sh -c "yum install -y epel-release 2>&1>> packages.log"
+ #- docker exec -it $(docker ps -aq) sh -c "yum groupinstall -y "Development tools" 2>&1>> packages.log"
  #- docker exec -it $(docker ps -aq) sh -c "yum install -y https://centos7.iuscommunity.org/ius-release.rpm 2>&1>> packages.log"
   - docker exec -it $(docker ps -aq) sh -c "yum install -y kernel-* dkms gcc-* kernel-headers kernel-devel perl-* 2>&1>> packages.log"
   - docker exec -it $(docker ps -aq) sh -c "yum install -y sudo-* 2>&1>> packages.log"
@@ -45,9 +45,9 @@ script:
   - docker start $(docker ps -aq)
   - docker container ls
   - docker exec -it $(docker ps -aq) sh -c "VBoxManage --version"
- #- docker exec -it $(docker ps -aq) sh -c "vagrant box add solaris http://www.benden.us/vagrant/solaris-11.2.box"
- #- docker exec -it $(docker ps -aq) sh -c "vagrant init solaris"
- #- docker exec -it $(docker ps -aq) sh -c "vagrant up"
+  - docker exec -it $(docker ps -aq) sh -c "vagrant box add solaris http://www.benden.us/vagrant/solaris-11.2.box 2>&1>> packages.log"
+  - docker exec -it $(docker ps -aq) sh -c "vagrant init solaris 2>&1>> packages.log"
+  - docker exec -it $(docker ps -aq) sh -c "vagrant up"
  #- docker exec -it $(docker ps -aq) sh -c "vagrant ssh -c cat /etc/*release"
  #- docker exec -it $(docker ps -aq) sh -c "vagrant ssh -c ls -la /etc/*release"
  #- docker exec -it $(docker ps -aq) sh -c "vagrant ssh -c pkg install -y bash text-utilities"
