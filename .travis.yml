@@ -28,7 +28,7 @@ script:
   - docker exec -it $(docker ps -aq) sh -c "echo "group_package_types=default, mandatory, optional" >> /etc/yum.conf"
   - docker exec -it $(docker ps -aq) sh -c "cat /etc/yum.conf"
   - docker exec -it $(docker ps -aq) sh -c "yum groupinstall -y "GNOME Desktop" "Graphical Administration Tools""
-  - docker exec -it $(docker ps -aq) sh -c "yum groupinstall -y "Server with GUI""
+ #- docker exec -it $(docker ps -aq) sh -c "yum groupinstall -y "Server with GUI""
   - docker exec -it $(docker ps -aq) sh -c "ln -sf /lib/systemd/system/runlevel5.target /etc/systemd/system/default.target"
   - docker exec -it $(docker ps -aq) sh -c "yum install -y gcc make patch  dkms qt libgomp"
   - docker exec -it $(docker ps -aq) sh -c "yum install -y kernel-headers kernel-devel fontforge binutils glibc-headers glibc-devel"
