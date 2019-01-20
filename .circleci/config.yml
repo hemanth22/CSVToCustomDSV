@@ -5,14 +5,26 @@ jobs:
          - image: centos:latest
        steps:
          - checkout
-         - run: echo "hello world"
-         - run: cat /etc/*release
-         - run: echo "Installing dependencies."
-         - run: yum install -y epel-release
-         - run: yum install -y git
-         - run: yum install -y util-linux-2.23.2-43.el7_4.2.x86_64
-         - run: echo "Running Tests."
-         - run: cat ESS.csv | column -t -s '"' -o '' | column -t -s ',' -o ';' > ESS.txt
-         - run: echo "check results."
-         - run: cat ESS.txt
-         - run: echo "Test Completed."
+         - run: 
+             name: Identifying the Operating System.
+             command: cat /etc/*release
+
+         - run: 
+             name: Installing Extra Packages for Enterprise Linux.
+             command: yum install -y epel-release
+
+         - run: 
+             name: Installing Version control tool.
+             command: yum install -y git
+
+         - run: 
+             name: Installing linux utilites.
+             command: yum install -y util-linux-2.23.2-43.el7_4.2.x86_64
+
+         - run: 
+             name: Executing tests on App.
+             command: cat ESS.csv | column -t -s '"' -o '' | column -t -s ',' -o ';' > ESS.txt
+
+         - run: 
+             name: Check execution result.
+             command: cat ESS.csv | column -t -s '"' -o '' | column -t -s ',' -o ';' > ESS.txt
