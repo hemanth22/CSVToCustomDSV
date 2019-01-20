@@ -19,7 +19,7 @@ jobs:
 
          - run: 
              name: Installing linux utilites.
-             command: yum install -y util-linux.x86_64
+             command: yum install -y util-linux.x86_64 fpaste
 
          - run: 
              name: Executing tests on App.
@@ -27,4 +27,4 @@ jobs:
 
          - run: 
              name: Check execution result.
-             command: cat ESS.csv | column -t -s '"' -o '' | column -t -s ',' -o ';' > ESS.txt
+             command: cat ESS.txt | fpaste.noarch
