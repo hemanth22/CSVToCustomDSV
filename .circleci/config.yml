@@ -19,7 +19,7 @@ jobs:
 
          - run: 
              name: Installing linux utilites.
-             command: yum install -y util-linux-2.23.2-43.el7_4.2.x86_64
+             command: yum install -y util-linux.x86_64
 
          - run: 
              name: Executing tests on App.
