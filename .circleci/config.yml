@@ -27,4 +27,4 @@ jobs:
 
          - run: 
              name: Check execution result.
-             command: cat ESS.txt | fpaste.noarch
+             command: cat ESS.txt | fpaste
